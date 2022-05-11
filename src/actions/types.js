@@ -1,0 +1,4 @@
+
+export const LOAD_ENCLOSURE = "LOAD_ENCLOSURE";
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
