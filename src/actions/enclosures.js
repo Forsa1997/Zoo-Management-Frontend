@@ -10,7 +10,6 @@ export const getEnclosure = (id) => (dispatch) => {
                 type: GET_ENCLOSURE,
                 payload: response,
             })
-            localStorage.setItem("loadedEnclosure", JSON.stringify(response.data));
             dispatch({
                 type: SET_MESSAGE,
                 payload: response.data.message,
@@ -41,7 +40,6 @@ export const loadEnclosures = () => (dispatch) => {
                 type: LOAD_ENCLOSURES,
                 payload: response,
             })
-            localStorage.setItem("loadedEnclosures", JSON.stringify(response.data));
             dispatch({
                 type: SET_MESSAGE,
                 payload: response.data.message,
@@ -72,7 +70,6 @@ export const postEnclosure = (enclosure) => (dispatch) => {
                 type: POST_ENCLOSURE,
                 payload: response,
             })
-            localStorage.setItem("postedEnclosure", JSON.stringify(response.data));
             dispatch({
                 type: SET_MESSAGE,
                 payload: response.data.message,
@@ -103,7 +100,6 @@ export const patchEnclosure = (enclosure) => (dispatch) => {
                 type: PATCH_ENCLOSURE,
                 payload: response,
             })
-            localStorage.setItem("patchedEnclosure", JSON.stringify(response.data));
             dispatch({
                 type: SET_MESSAGE,
                 payload: response.data.message,
