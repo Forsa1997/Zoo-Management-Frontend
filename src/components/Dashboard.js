@@ -21,8 +21,9 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import { loadEnclosure } from '../actions/enclosures';
-import {useDispatch} from "react-redux"
+import { Button } from '@mui/material';
+import { loadEnclosures, getEnclosure, postEnclosure } from '../actions/enclosures';
+import { useDispatch } from "react-redux"
 
 function Copyright(props) {
   return (
@@ -86,14 +87,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const mdTheme = createTheme();
 
 function DashboardContent() {
+  const testgehege = ({ name: "Testgehege", description: "Das ist das Testfgehege" });
   const [open, setOpen] = React.useState(true);
+  const dispatch = useDispatch();
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
   return (
     <ThemeProvider theme={mdTheme}>
-        {useDispatch(loadEnclosure())}
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar position="absolute" open={open}>
@@ -123,6 +125,9 @@ function DashboardContent() {
             >
               Dashboard
             </Typography>
+            <Button color='secondary' onClick={e => dispatch(getEnclosure(1))}>GETENCLOSURE</Button>
+            <Button color='secondary' onClick={e => dispatch(loadEnclosures())}>GETENCLOSURES</Button>
+            <Button color='secondary' onClick={e => dispatch(postEnclosure(testgehege))}>POSTENCLOSURE</Button>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />

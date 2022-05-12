@@ -10,6 +10,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
+
 export const mainListItems = (
   <React.Fragment>
     <ListItemButton>
@@ -17,7 +18,7 @@ export const mainListItems = (
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
-    </ListItemButton>
+    </ListItemButton >
     <ListItemButton>
       <ListItemIcon>
         <ShoppingCartIcon />
