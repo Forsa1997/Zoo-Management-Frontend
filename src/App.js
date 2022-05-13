@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from "./components/Theme";
+import Album from './components/Album';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Provider store={store}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
+        {/* <Route path="/" element={<Album />} /> */}
       </Routes>
     </Provider>
     </ThemeProvider>
