@@ -11,13 +11,15 @@ import Theme from "./components/Theme";
 import Album from './components/Album';
 
 function App() {
+  const cards = [{name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}];
 
   return (
     <ThemeProvider theme={Theme}>
     <Provider store={store}>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/" element={<Album />} /> */}
+        {/* <Route path="/" element={<Dashboard />} /> */}
+        <Route path="/" element={<Album name="Enclosures" cards={cards}/>} />
+        <Route path="/enclosures" element={<Album name="EnclosuresRouter" cards={cards}/>} />
       </Routes>
     </Provider>
     </ThemeProvider>

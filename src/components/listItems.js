@@ -4,44 +4,56 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import HomeIcon from '@mui/icons-material/Home';
+import PetsIcon from '@mui/icons-material/Pets';
+import FestivalIcon from '@mui/icons-material/Festival';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Navigate } from "react-router-dom";
+
 
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/home"></Navigate>}>
       <ListItemIcon>
-        <DashboardIcon />
+        <HomeIcon/>
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Home" />
     </ListItemButton >
-    <ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/animals"></Navigate>}>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <PetsIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <ListItemText primary="Animals" />
     </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItemButton>
-    <ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/reports"></Navigate>}>
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/enclosures"></Navigate>}>
       <ListItemIcon>
-        <LayersIcon />
+        <FestivalIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Enclosures" />
+    </ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/staff"></Navigate>}>
+      <ListItemIcon>
+        <EngineeringIcon />
+      </ListItemIcon>
+      <ListItemText primary="Staff" />
+    </ListItemButton>
+    <ListItemButton onClick={e => <Navigate to="/stands"></Navigate>}>
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Stands" />
     </ListItemButton>
   </React.Fragment>
 );
