@@ -29,12 +29,13 @@ import ListItemText from '@mui/material/ListItemText';
 const drawerWidth = 240;
 
 const listItems = [
-  { icon: <HomeIcon />, name: "Home" },
-  { icon: <PetsIcon />, name: "Animals" },
-  { icon: <BarChartIcon />, name: "Reports" },
-  { icon: <FestivalIcon />, name: "Enclosures" },
-  { icon: <EngineeringIcon />, name: "Staff" },
-  { icon: <ShoppingCartIcon />, name: "Stands" }]
+    { icon: <HomeIcon />, name: "Home" },
+    { icon: <PetsIcon />, name: "Animals" },
+    { icon: <BarChartIcon />, name: "Reports" },
+    { icon: <FestivalIcon />, name: "Enclosures" },
+    { icon: <EngineeringIcon />, name: "Staff" },
+    { icon: <ShoppingCartIcon />, name: "Stands" },
+    { icon: <ShoppingCartIcon />, name: "DetailView" }]
 
 
 const AppBar = styled(MuiAppBar, {
@@ -89,6 +90,8 @@ const Navbar = (props) => {
     const toggleDrawer = () => {
         setOpen(!open);
     };
+
+
 
     return (
         <div>
@@ -145,13 +148,13 @@ const Navbar = (props) => {
                 <Divider />
                 <List component="nav">
                     <React.Fragment>
-                        {listItems.map(item => (
-                            <ListItemButton onClick={e => navigate("/" + item.name)}>
-                            <ListItemIcon>
-                              {item.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={item.name} />
-                          </ListItemButton > 
+                        {listItems.map((item, index) => (
+                            <ListItemButton key={index} onClick={e => navigate("/" + item.name)}>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.name} />
+                            </ListItemButton >
                         ))}
                     </React.Fragment>
                 </List>

@@ -9,17 +9,22 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from "./components/Theme";
 import Album from './components/Album';
+import DetailView from './components/DetailView';
 
 function App() {
-  const cards = [{name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}, {name: "test"}];
 
   return (
     <ThemeProvider theme={Theme}>
     <Provider store={store}>
       <Routes>
-        {/* <Route path="/" element={<Dashboard />} /> */}
-        <Route path="/" element={<Album name="Enclosures" cards={cards}/>} />
-        <Route path="/enclosures" element={<Album name="EnclosuresRouter" cards={cards}/>} />
+        <Route path="/" element={<Dashboard name="Dashboard"/>} />
+        <Route path="/Home" element={<Dashboard name="Dashboard" />} />
+        <Route path="/Animals" element={<Album name="Enclosures" />} />
+        <Route path="/Reports" element={<Album name="Enclosures" />} />
+        <Route path="/Enclosures" element={<Album name="Enclosures" />} />
+        <Route path="/Staff" element={<Album name="Enclosures" />} />
+        <Route path="/Stands" element={<Album name="Enclosures" />} />
+        <Route path="/DetailView" element={<DetailView name="DetailView" />} />
       </Routes>
     </Provider>
     </ThemeProvider>

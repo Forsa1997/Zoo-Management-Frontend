@@ -3,27 +3,31 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Navbar from "./Navbar"
 import Footer from './Footer';
+import { useDispatch} from 'react-redux';
+import { loadEnclosures } from '../actions/enclosures';
 
 const mdTheme = createTheme();
 
-function DashboardContent() {
+function Dashboard(props) {
+
+  const dispatch = useDispatch();
+
+  dispatch(loadEnclosures())
 
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Navbar/>
-       
+        <Navbar name={props.name} />
+
         <Box
           component="main"
           sx={{
@@ -72,7 +76,7 @@ function DashboardContent() {
                 </Paper>
               </Grid>
             </Grid>
-            <Footer/>
+            <Footer />
           </Container>
         </Box>
       </Box>
@@ -80,6 +84,4 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
-}
+export default Dashboard;

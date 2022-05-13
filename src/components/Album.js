@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +10,10 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import DetailView from './DetailView';
+import { loadEnclosures } from '../actions/enclosures';
 
 
 
@@ -19,6 +21,20 @@ import Footer from './Footer';
 const theme = createTheme();
 
 export default function Album(props) {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    console.log(useSelector(state => state.enclosureReducer.state.enclosures))
+
+    // if (useSelector(state => state.enclosureReducer.state.enclosures === 0)) {
+    //     dispatch(loadEnclosures());
+    // }
+
+
+    
+    const enclosures = useSelector(state => state.enclosureReducer.state.enclosures);
+
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ display: 'flex' }}>
@@ -29,10 +45,11 @@ export default function Album(props) {
                     <Container sx={{ py: 8 }} maxWidth="md">
                         {/* End hero unit */}
                         <Grid container spacing={4}>
-                            {props.cards.map((card) => (
-                                <Grid item key={card} xs={12} sm={6} md={4}>
+                            {enclosures.map((enclosure, index) => (
+                                <Grid item key={index} xs={12} sm={6} md={4}>
                                     <Card
                                         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                                        onClick={e => navigate("/DetailView")}
                                     >
                                         <CardMedia
                                             component="img"
@@ -45,17 +62,9 @@ export default function Album(props) {
                                         />
                                         <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">
-                                                {card.name}
+                                                {enclosure.name}
                                             </Typography>
-                                            {/* <Typography>
-                                                This is a media card. You can use this section to describe the
-                                                content.
-                                            </Typography> */}
                                         </CardContent>
-                                        {/* <CardActions>
-                                            <Button size="small">View</Button>
-                                            <Button size="small">Edit</Button>
-                                        </CardActions> */}
                                     </Card>
                                 </Grid>
                             ))}
