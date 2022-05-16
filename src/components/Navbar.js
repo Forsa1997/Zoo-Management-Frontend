@@ -34,8 +34,8 @@ const listItems = [
     { icon: <BarChartIcon />, name: "Reports" },
     { icon: <FestivalIcon />, name: "Enclosures" },
     { icon: <EngineeringIcon />, name: "Staff" },
-    { icon: <ShoppingCartIcon />, name: "Stands" },
-    { icon: <ShoppingCartIcon />, name: "DetailView" }]
+    { icon: <ShoppingCartIcon />, name: "Stands" }
+]
 
 
 const AppBar = styled(MuiAppBar, {

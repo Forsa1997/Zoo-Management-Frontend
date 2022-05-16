@@ -32,14 +32,14 @@ export default function Album(props) {
     // }
 
 
-    
+
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures);
 
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <Navbar name={props.name}/>
+                <Navbar name={props.name} />
                 <main>
                     {/* Hero unit */}
                     <Container sx={{ py: 8 }} maxWidth="md">
@@ -49,7 +49,7 @@ export default function Album(props) {
                                 <Grid item key={index} xs={12} sm={6} md={4}>
                                     <Card
                                         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                        onClick={e => navigate("/DetailView")}
+                                        onClick={e => navigate(`/DetailView/${enclosure.id}`)}
                                     >
                                         <CardMedia
                                             component="img"
@@ -57,7 +57,7 @@ export default function Album(props) {
                                                 // 16:9
                                                 pt: '56.25%',
                                             }}
-                                            image="https://source.unsplash.com/random"
+                                            image="https://source.unsplash.com/random/?animal,animals"
                                             alt="random"
                                         />
                                         <CardContent sx={{ flexGrow: 1 }}>

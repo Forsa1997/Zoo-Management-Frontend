@@ -24,7 +24,7 @@ function App() {
         <Route path="/Enclosures" element={<Album name="Enclosures" />} />
         <Route path="/Staff" element={<Album name="Enclosures" />} />
         <Route path="/Stands" element={<Album name="Enclosures" />} />
-        <Route path="/DetailView" element={<DetailView name="DetailView" />} />
+        <Route path="/DetailView/:enclosureId" element={<DetailView name="Enclosure" />} />
       </Routes>
     </Provider>
     </ThemeProvider>
