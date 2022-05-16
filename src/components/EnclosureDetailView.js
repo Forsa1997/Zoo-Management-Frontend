@@ -34,9 +34,15 @@ const EnclosureDetailView = (props) => {
     const { enclosureId } = useParams();
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures)
     const enclosure = enclosures.find(enclosure => enclosure.id == enclosureId);
+    const animals = useSelector(state => state.animalReducer.state.animals)
 
     const mdTheme = createTheme();
 
+
+    const getAnimal = (animalId) => {
+        const animal = animals.find(animal => animal.id == animalId)
+        return animal.name;
+    }
 
     return (
         <ThemeProvider theme={mdTheme}>
@@ -75,14 +81,32 @@ const EnclosureDetailView = (props) => {
                                         <Button onClick={e => EnclosureService.deleteEnclosure(enclosureId)} variant="contained"><DeleteIcon /></Button>
                                     </Grid>
                                     <Grid sx={{
-                                        widht: 200,
-                                        height: 200
+                                        display: 'flex',
+                                        flexDirection: 'row',
                                     }}>
-                                        <Typography variant='h5'>Name:</Typography>
-                                        <TextField sx={{ mb: 1 }} label={enclosure.name} variant="standard" />
-                                        {/* <Typography sx={{ mb: 1 }}>{enclosure.name}</Typography> */}
-                                        <Typography variant='h5'>Description:</Typography>
-                                        <Typography>{enclosure.description}</Typography>
+                                        <Grid sx={{
+                                            widht: 200,
+                                            height: 200,
+                                            ml: 3
+                                        }}>
+                                            <Typography variant='h5'>Name:</Typography>
+                                            <TextField label={enclosure.name} variant="standard" />
+                                        </Grid>
+                                        <Grid sx={{
+                                            widht: 200,
+                                            height: 200,
+                                            ml: 15
+                                        }}>
+                                            <Typography variant='h5'>Description:</Typography>
+                                            <TextField
+                                                sx={{ width: "400px" }}
+                                                id="standard-multiline-static"
+                                                multiline
+                                                rows={6}
+                                                defaultValue={enclosure.description}
+                                                variant="standard"
+                                            />
+                                        </Grid>
                                     </Grid>
                                 </Paper>
                             </Grid>
@@ -110,13 +134,14 @@ const EnclosureDetailView = (props) => {
                                     <Typography variant='h5'>Animals:</Typography>
                                     <List>
                                         <React.Fragment>
-                                            {enclosure.animals.map((animal, index) => (
-                                            <ListItem key={index} >
-                                                <ListItemIcon>
-                                                    <FiberManualRecordIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary={animal.name} />
-                                            </ListItem >
+                                            {enclosure.animalId.map((animalId, index) => (
+                                                <ListItem key={index} >
+
+                                                    <ListItemIcon>
+                                                        <FiberManualRecordIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={getAnimal(animalId)} />
+                                                </ListItem >
                                             ))}
                                         </React.Fragment>
                                     </List>
@@ -134,14 +159,15 @@ const EnclosureDetailView = (props) => {
                                     <Typography variant='h5'>Staff:</Typography>
                                     <List>
                                         <React.Fragment>
-                                            {enclosure.staff.map((staff, index) => (
-                                            <ListItem key={index}>
+                                            {/* {enclosure.staff.map((staff, index) => ( */}
+                                            <ListItem>
                                                 <ListItemIcon>
                                                     <FiberManualRecordIcon />
                                                 </ListItemIcon>
-                                                <ListItemText primary={staff.name} />
+                                                {/* <ListItemText primary={staff.name} /> */}
+                                                <ListItemText primary="Placeholder" />
                                             </ListItem >
-                                            ))}
+                                            {/* ))} */}
                                         </React.Fragment>
                                     </List>
                                 </Paper>

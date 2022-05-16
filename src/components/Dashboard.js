@@ -13,6 +13,7 @@ import Navbar from "./Navbar"
 import Footer from './Footer';
 import { useDispatch} from 'react-redux';
 import { loadEnclosures } from '../actions/enclosures';
+import { loadAnimals } from '../actions/animals';
 
 const mdTheme = createTheme();
 
@@ -21,6 +22,7 @@ function Dashboard(props) {
   const dispatch = useDispatch();
 
   dispatch(loadEnclosures())
+  dispatch(loadAnimals())
 
   return (
     <ThemeProvider theme={mdTheme}>

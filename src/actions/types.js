@@ -8,6 +8,10 @@ export const DELETE_ANIMAL_FROM_ENCLOSURE = "DELETE_ANIMAL_FROM_ENCLOSURE";
 
 
 export const GET_ANIMAL = "GET_ANIMAL";
+export const LOAD_ANIMALS = "LOAD_ANIMALS";
+export const POST_ANIMAL = "POST_ANIMAL";
+export const PATCH_ANIMAL = "PATCH_ANIMAL";
+export const DELETE_ANIMAL = "DELETE_ANIMAL";
 
 
 

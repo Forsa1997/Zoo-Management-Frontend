@@ -127,7 +127,8 @@ export const deleteEnclosure = (id) => (dispatch) => {
     return EnclosureService.deleteEnclosure(id).then(
         (response) => {
             dispatch({
-                type: DELETE_ENCLOSURE
+                type: DELETE_ENCLOSURE,
+                payload: id
             })
             dispatch({
                 type: SET_MESSAGE,

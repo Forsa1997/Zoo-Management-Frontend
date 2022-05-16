@@ -12,6 +12,9 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import AddButton from './inputs/AddButton';
+import AddAnimalCard from './AddAnimalCard';
+import Collapse from "@mui/material/Collapse";
 
 
 
@@ -22,16 +25,13 @@ export default function Album(props) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    console.log(useSelector(state => state.enclosureReducer.state.enclosures))
-
-    // if (useSelector(state => state.enclosureReducer.state.enclosures === 0)) {
-    //     dispatch(loadEnclosures());
-    // }
-
-
+    const [checked, setChecked] = React.useState(false);
 
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures);
+
+    const handleOnMenuClick = () => {
+        setChecked(prev => !prev);
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -39,6 +39,9 @@ export default function Album(props) {
                 <CssBaseline />
                 <Navbar name={props.name} />
                 <main>
+                    <Collapse orientation="horizontal" in={checked}>
+                        <AddAnimalCard handleOnMenuClick={handleOnMenuClick} />
+                    </Collapse>
                     {/* Hero unit */}
                     <Container sx={{ py: 8 }} >
                         {/* End hero unit */}
@@ -69,6 +72,7 @@ export default function Album(props) {
                         </Grid>
                     </Container>
                 </main>
+                <AddButton handleOnMenuClick={handleOnMenuClick} />
             </Box>
             <Footer />
         </ThemeProvider>
