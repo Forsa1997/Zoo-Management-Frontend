@@ -16,7 +16,7 @@ const animalReducer = (state = initialState, action) => {
         case DELETE_ANIMAL:
         let newAnimalsList = [];
         state.animals.forEach(animal => {
-            if (!(animal.id === payload.data)) {
+            if ((animal.id === payload.data)) {
                 newAnimalsList = [...newAnimalsList, animal]
             }
         })

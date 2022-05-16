@@ -43,22 +43,16 @@ export default function Album(props) {
                         <AddAnimalCard handleOnMenuClick={handleOnMenuClick} />
                     </Collapse>
                     {/* Hero unit */}
-                    <Container sx={{ py: 8 }} >
+                    <Container sx={{ py: 8}} >
                         {/* End hero unit */}
-                        <Grid container spacing={4}>
+                        <Grid container spacing={3}>
                             {enclosures.map((enclosure, index) => (
                                 <Grid item key={index} xs={12} sm={6} md={4}>
-                                    <Card
-                                        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                        onClick={e => navigate(`/DetailView/${enclosure.id}`)}
-                                    >
+                                    <Card onClick={e => navigate(`/DetailView/${enclosure.id}`)}>
                                         <CardMedia
                                             component="img"
-                                            sx={{
-                                                // 16:9
-                                                pt: '56.25%',
-                                            }}
-                                            image="https://source.unsplash.com/random/?animal,animals"
+                                            sx={{ mt: 5 }}
+                                            image="https://source.unsplash.com/random/350x350/?cage"
                                             alt="random"
                                         />
                                         <CardContent sx={{ flexGrow: 1 }}>

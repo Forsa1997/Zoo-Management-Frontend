@@ -25,6 +25,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import EnclosureService from '../services/enclosure.service';
 import { TextField } from '@mui/material';
+import TransferList from './inputs/AnimalTransferList';
 
 
 const EnclosureDetailView = (props) => {
@@ -35,17 +36,23 @@ const EnclosureDetailView = (props) => {
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures)
     const enclosure = enclosures.find(enclosure => enclosure.id == enclosureId);
     const animals = useSelector(state => state.animalReducer.state.animals)
+    let animalList = [];
 
     const mdTheme = createTheme();
 
 
-    const getAnimal = (animalId) => {
-        const animal = animals.find(animal => animal.id == animalId)
-        return animal.name;
+    const getAnimalList = () => {
+        let newAnimalList = [];
+        enclosure.animalId.map((animalId) => {
+            const animal = animals.find(animal => animal.id == animalId)
+            newAnimalList.push(animal);
+        })
+        animalList = newAnimalList;
     }
 
     return (
         <ThemeProvider theme={mdTheme}>
+            {getAnimalList()}
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <Navbar name={props.name} />
@@ -91,6 +98,7 @@ const EnclosureDetailView = (props) => {
                                         }}>
                                             <Typography variant='h5'>Name:</Typography>
                                             <TextField label={enclosure.name} variant="standard" />
+
                                         </Grid>
                                         <Grid sx={{
                                             widht: 200,
@@ -104,7 +112,6 @@ const EnclosureDetailView = (props) => {
                                                 multiline
                                                 rows={6}
                                                 defaultValue={enclosure.description}
-                                                variant="standard"
                                             />
                                         </Grid>
                                     </Grid>
@@ -122,7 +129,7 @@ const EnclosureDetailView = (props) => {
                                     />
                                 </Card>
                             </Grid>
-                            <Grid item sm={12} md={4} >
+                            <Grid item sm={12} md={6} >
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -132,22 +139,10 @@ const EnclosureDetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Animals:</Typography>
-                                    <List>
-                                        <React.Fragment>
-                                            {enclosure.animalId.map((animalId, index) => (
-                                                <ListItem key={index} >
-
-                                                    <ListItemIcon>
-                                                        <FiberManualRecordIcon />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={getAnimal(animalId)} />
-                                                </ListItem >
-                                            ))}
-                                        </React.Fragment>
-                                    </List>
+                                    <TransferList animals={animalList} />
                                 </Paper>
                             </Grid>
-                            <Grid item sm={12} md={4} >
+                            <Grid item sm={12} md={6} >
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -172,7 +167,7 @@ const EnclosureDetailView = (props) => {
                                     </List>
                                 </Paper>
                             </Grid>
-                            <Grid item sm={12} md={4}>
+                            <Grid item sm={12} md={6}>
                                 <Paper
                                     sx={{
                                         p: 2,
@@ -192,6 +187,30 @@ const EnclosureDetailView = (props) => {
                                                 <ListItemText primary={enclosure.cost.monthlyCost} />
                                             </ListItem >
                                             {/* ))} */}
+                                        </React.Fragment>
+                                    </List>
+                                </Paper>
+                            </Grid>
+                            <Grid item sm={12} md={6}>
+                                <Paper
+                                    sx={{
+                                        p: 2,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        height: 300,
+                                    }}
+                                >
+                                    <Typography variant='h5'>Animaltypes:</Typography>
+                                    <List>
+                                        <React.Fragment>
+                                            {enclosure.animalTypes.map((type, index) => (
+                                                <ListItem key={index} >
+                                                    <ListItemIcon>
+                                                        <FiberManualRecordIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={type} />
+                                                </ListItem >
+                                            ))}
                                         </React.Fragment>
                                     </List>
                                 </Paper>
