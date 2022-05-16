@@ -12,8 +12,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import DetailView from './DetailView';
-import { loadEnclosures } from '../actions/enclosures';
 
 
 
@@ -42,7 +40,7 @@ export default function Album(props) {
                 <Navbar name={props.name} />
                 <main>
                     {/* Hero unit */}
-                    <Container sx={{ py: 8 }} maxWidth="md">
+                    <Container sx={{ py: 8 }} >
                         {/* End hero unit */}
                         <Grid container spacing={4}>
                             {enclosures.map((enclosure, index) => (

@@ -9,7 +9,7 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from "./components/Theme";
 import Album from './components/Album';
-import DetailView from './components/DetailView';
+import EnclosureDetailView from './components/EnclosureDetailView';
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
         <Route path="/Enclosures" element={<Album name="Enclosures" />} />
         <Route path="/Staff" element={<Album name="Enclosures" />} />
         <Route path="/Stands" element={<Album name="Enclosures" />} />
-        <Route path="/DetailView/:enclosureId" element={<DetailView name="Enclosure" />} />
+        <Route path="/DetailView/:enclosureId" element={<EnclosureDetailView name="Enclosure" />} />
       </Routes>
     </Provider>
     </ThemeProvider>

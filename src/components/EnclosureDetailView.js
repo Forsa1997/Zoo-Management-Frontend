@@ -21,11 +21,15 @@ import * as React from 'react';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { CardMedia } from '@mui/material';
 import { Card } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import EnclosureService from '../services/enclosure.service';
+import { TextField } from '@mui/material';
 
 
-const DetailView = (props) => {
+const EnclosureDetailView = (props) => {
+
+    const navigate = useNavigate();
 
     const { enclosureId } = useParams();
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures)
@@ -66,16 +70,17 @@ const DetailView = (props) => {
                                         height: 80,
                                         mx: "auto",
                                     }}>
-                                        <Button variant="contained" sx={{ height: 50, ml: 1, mr: 50 }}><KeyboardReturnIcon /></Button>
+                                        <Button onClick={e => navigate("/Enclosures")} variant="contained" sx={{ height: 50, ml: 1, mr: 50 }}><KeyboardReturnIcon /></Button>
                                         <Button variant="contained" sx={{ mr: 10 }}><SaveIcon /></Button>
-                                        <Button variant="contained"><DeleteIcon /></Button>
+                                        <Button onClick={e => EnclosureService.deleteEnclosure(enclosureId)} variant="contained"><DeleteIcon /></Button>
                                     </Grid>
                                     <Grid sx={{
                                         widht: 200,
                                         height: 200
                                     }}>
                                         <Typography variant='h5'>Name:</Typography>
-                                        <Typography sx={{ mb: 1 }}>{enclosure.name}</Typography>
+                                        <TextField sx={{ mb: 1 }} label={enclosure.name} variant="standard" />
+                                        {/* <Typography sx={{ mb: 1 }}>{enclosure.name}</Typography> */}
                                         <Typography variant='h5'>Description:</Typography>
                                         <Typography>{enclosure.description}</Typography>
                                     </Grid>
@@ -103,7 +108,7 @@ const DetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Animals:</Typography>
-                                    <List component="animals">
+                                    <List>
                                         <React.Fragment>
                                             {enclosure.animals.map((animal, index) => (
                                             <ListItem key={index} >
@@ -127,7 +132,7 @@ const DetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Staff:</Typography>
-                                    <List component="staff">
+                                    <List>
                                         <React.Fragment>
                                             {enclosure.staff.map((staff, index) => (
                                             <ListItem key={index}>
@@ -151,7 +156,7 @@ const DetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Cost:</Typography>
-                                    <List component="cost">
+                                    <List>
                                         <React.Fragment>
                                             {/* {enclosure.cost.map((cost, index) => ( */}
                                             <ListItem>
@@ -173,4 +178,4 @@ const DetailView = (props) => {
     )
 }
 
-export default DetailView;
+export default EnclosureDetailView;
