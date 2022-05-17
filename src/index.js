@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter} from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+import { ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
+import Theme from "./components/Theme";
+import store from './store';
 
 const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
 
 renderMethod(
-        <HashRouter>
-            <App />
-        </HashRouter>
+    <ThemeProvider theme={Theme}>
+        <Provider store={store}>
+            <HashRouter>
+                <App />
+            </HashRouter>
+        </Provider>
+    </ThemeProvider>
     ,
     document.getElementById('root')
 );

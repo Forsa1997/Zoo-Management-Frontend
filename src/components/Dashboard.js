@@ -21,8 +21,7 @@ function Dashboard(props) {
 
   const dispatch = useDispatch();
 
-  dispatch(loadEnclosures())
-  dispatch(loadAnimals())
+
 
   return (
     <ThemeProvider theme={mdTheme}>

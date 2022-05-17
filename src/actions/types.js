@@ -14,11 +14,13 @@ export const PATCH_ANIMAL = "PATCH_ANIMAL";
 export const DELETE_ANIMAL = "DELETE_ANIMAL";
 
 
-
-
-
-
-
+export const GET_STAFF = "GET_STAFF";
+export const LOAD_STAFFS = "LOAD_STAFFS";
+export const POST_STAFF = "POST_STAFF";
+export const PATCH_STAFF = "PATCH_STAFF";
+export const DELETE_STAFF = "DELETE_STAFF";
+export const POST_STAFF_TO_ENCLOSURE = "POST_STAFF_TO_ENCLOSURE";
+export const DELETE_STAFF_FROM_ENCLOSURE = "DELETE_STAFF_FROM_ENCLOSURE";
 
 
 

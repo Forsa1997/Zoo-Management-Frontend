@@ -22,37 +22,78 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import { CardMedia } from '@mui/material';
 import { Card } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EnclosureService from '../services/enclosure.service';
 import { TextField } from '@mui/material';
-import TransferList from './inputs/AnimalTransferList';
+import AnimalTransferList from './inputs/AnimalTransferList';
+import { useEffect } from 'react';
+import { loadEnclosures } from '../actions/enclosures';
+import { loadAnimals } from '../actions/animals';
+import StaffTransferList from './inputs/StaffTransferList';
 
 
 const EnclosureDetailView = (props) => {
 
+
     const navigate = useNavigate();
 
+    const failbackEnclosure = {
+        animalId: [],
+        animalTypes: [],
+        cost: { monthlyCost: 0 },
+        description: "Default Enclosure",
+        id: 1,
+        name: "DefaultEnclosure",
+        staffId: []
+    }
+
+    const dispatch = useDispatch();
     const { enclosureId } = useParams();
     const enclosures = useSelector(state => state.enclosureReducer.state.enclosures)
-    const enclosure = enclosures.find(enclosure => enclosure.id == enclosureId);
+    const enclosure = enclosures.find(enclosure => enclosure.id == enclosureId) ?? failbackEnclosure;
     const animals = useSelector(state => state.animalReducer.state.animals)
+    const staffs = useSelector(state => state.staffReducer.state.staffs);
     let animalList = [];
+    let staffList = [];
 
     const mdTheme = createTheme();
 
 
+    useEffect(() => {
+        dispatch(loadEnclosures())
+        dispatch(loadAnimals())
+    }, []);
+
+    useEffect(() => {
+        if(!animals || !enclosures){
+            return
+        }
+        getAnimalList()
+    }, [animals, enclosures]);
+
     const getAnimalList = () => {
         let newAnimalList = [];
-        enclosure.animalId.map((animalId) => {
-            const animal = animals.find(animal => animal.id == animalId)
+        enclosure.animalId?.map((animalId) => {
+            const animal = animals.find(animal => animal.id === animalId)
             newAnimalList.push(animal);
         })
         animalList = newAnimalList;
     }
 
+    const getStaffList = () => {
+        let newStaffList = [];
+        enclosure.staffId?.map((staffId) => {
+            const staff = staffs.find(staff1 => staff1.id === staffId)
+            newStaffList.push(staff);
+        })
+        staffList = newStaffList;
+        console.log(staffList)
+    }
+
     return (
         <ThemeProvider theme={mdTheme}>
             {getAnimalList()}
+            {getStaffList()}
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <Navbar name={props.name} />
@@ -139,7 +180,7 @@ const EnclosureDetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Animals:</Typography>
-                                    <TransferList animals={animalList} />
+                                    <AnimalTransferList animals={animalList} />
                                 </Paper>
                             </Grid>
                             <Grid item sm={12} md={6} >
@@ -152,19 +193,7 @@ const EnclosureDetailView = (props) => {
                                     }}
                                 >
                                     <Typography variant='h5'>Staff:</Typography>
-                                    <List>
-                                        <React.Fragment>
-                                            {/* {enclosure.staff.map((staff, index) => ( */}
-                                            <ListItem>
-                                                <ListItemIcon>
-                                                    <FiberManualRecordIcon />
-                                                </ListItemIcon>
-                                                {/* <ListItemText primary={staff.name} /> */}
-                                                <ListItemText primary="Placeholder" />
-                                            </ListItem >
-                                            {/* ))} */}
-                                        </React.Fragment>
-                                    </List>
+                                    <StaffTransferList staff={staffList}/>
                                 </Paper>
                             </Grid>
                             <Grid item sm={12} md={6}>

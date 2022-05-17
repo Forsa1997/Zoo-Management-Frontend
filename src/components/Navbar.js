@@ -122,14 +122,14 @@ const Navbar = (props) => {
                     >
                         {props.name}
                     </Typography>
-                    <Button color='secondary' onClick={e => dispatch(getEnclosure(1))}>GETENCLOSURE</Button>
+                    {/* <Button color='secondary' onClick={e => dispatch(getEnclosure(1))}>GETENCLOSURE</Button>
                     <Button color='secondary' onClick={e => dispatch(loadEnclosures())}>GETENCLOSURES</Button>
-                    <Button color='secondary' onClick={e => dispatch(postEnclosure(testgehege))}>POSTENCLOSURE</Button>
-                    <IconButton color="inherit">
+                    <Button color='secondary' onClick={e => dispatch(postEnclosure(testgehege))}>POSTENCLOSURE</Button> */}
+                    {/* <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
                         </Badge>
-                    </IconButton>
+                    </IconButton> */}
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>

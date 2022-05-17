@@ -1,6 +1,18 @@
 import { GET_ENCLOSURE, LOAD_ENCLOSURES, POST_ENCLOSURE, PATCH_ENCLOSURE, DELETE_ENCLOSURE, POST_ANIMAL_TO_ENCLOSURE, DELETE_ANIMAL_FROM_ENCLOSURE } from "../actions/types";
 
-const initialState = {};
+const initialState = {
+    state: {
+        enclosures: [{
+            animalId: [],
+            animalTypes: [],
+            cost: { monthlyCost: 0 },
+            description: "Default Enclosure",
+            id: 0,
+            name: "DefaultEnclosure",
+            staffId: []
+        }]
+    },
+};
 
 const enclosureReducer = (state = initialState, action) => {
     const { type, payload } = action;
